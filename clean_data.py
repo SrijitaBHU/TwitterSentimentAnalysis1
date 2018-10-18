@@ -118,3 +118,18 @@ for i in range(nums[3],nums[4]):
     if( (i+1)%10000 == 0 ):
         print( "Tweets %d of %d has been processed" % ( i+1, nums[4] )     )                                                               
     clean_tweet_texts.append(tweet_cleaner_updated(df['text'][i]))
+    
+lean_df = pd.DataFrame(clean_tweet_texts,columns=['text'])
+clean_df['target'] = df.sentiment
+clean_df.head()
+clean_df.to_csv('clean_tweet.csv',encoding='utf-8')
+csv = 'clean_tweet.csv'
+my_df = pd.read_csv(csv,index_col=0)
+my_df.head()
+
+#PROCESSING
+my_df.dropna(inplace=True)
+my_df.reset_index(drop=True,inplace=True)
+my_df.info()
+
+
